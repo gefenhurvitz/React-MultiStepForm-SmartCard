@@ -5,26 +5,26 @@ function SignUpInfo({ formData, setFormData }) {
     <div className="sign-up-container">
       <input
         type="text"
-        placeholder="Email..."
-        value={formData.email}
+        placeholder="Full Name"
+        value={formData.fullName}
         onChange={(event) =>
-          setFormData({ ...formData, email: event.target.value })
+          setFormData({ ...formData, fullName: event.target.value })
         }
       />
       <input
         type="text"
-        placeholder="Password..."
-        value={formData.password}
+        placeholder="Cell Number"
+        // value={formData.password}
         onChange={(event) =>
-          setFormData({ ...formData, password: event.target.value })
+          setFormData({ ...formData, cellNumber: event.target.value })
         }
       />
       <input
-        type="text"
-        placeholder="Confirm Password..."
+        type="Email"
+        placeholder="Email"
         value={formData.confirmPassword}
         onChange={(event) =>
-          setFormData({ ...formData, confirmPassword: event.target.value })
+          setFormData({ ...formData, email: event.target.value })
         }
       />
     </div>

@@ -5,26 +5,26 @@ function PersonalInfo({ formData, setFormData }) {
     <div className="personal-info-container">
       <input
         type="text"
-        placeholder="First Name..."
+        placeholder="problemKind"
         value={formData.firstName}
         onChange={(e) => {
-          setFormData({ ...formData, firstName: e.target.value });
+          setFormData({ ...formData, problemKind: e.target.value });
         }}
       />
       <input
         type="text"
-        placeholder="Last Name..."
+        placeholder="teamViewer"
         value={formData.lastName}
         onChange={(e) => {
-          setFormData({ ...formData, lastName: e.target.value });
+          setFormData({ ...formData, teamViewer: e.target.value });
         }}
       />
       <input
         type="text"
-        placeholder="Username..."
+        placeholder="anyDeskNumber"
         value={formData.username}
         onChange={(e) => {
-          setFormData({ ...formData, username: e.target.value });
+          setFormData({ ...formData, anyDeskNumber: e.target.value });
         }}
       />
     </div>
