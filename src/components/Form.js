@@ -18,12 +18,14 @@ function Form() {
     other: "",
   });
 
-  const FormTitles = ["פרטים אישיים", "תיאור הבעיה", "הפרטים"];
+  const FormTitles = ["פרטים אישיים", "תיאור הבעיה", "הפרטים", "ff"];
 
   const PageDisplay = () => {
     if (page === 0) {
       return <SignUpInfo formData={formData} setFormData={setFormData} />;
     } else if (page === 1) {
+      return <PersonalInfo formData={formData} setFormData={setFormData} />;
+    } else if (page === 2) {
       return <PersonalInfo formData={formData} setFormData={setFormData} />;
     } else {
       return <OtherInfo formData={formData} setFormData={setFormData} />;
@@ -34,7 +36,11 @@ function Form() {
     <div className="form">
       <div className="progressbar">
         <div
-          style={{ width: page === 0 ? "25%" : page === 1 ? "50%" : "100%" }}
+          style={{ width: 
+            page === 0 ? "25%" :
+            page === 1 ? "50%" :
+            page === 2 ? "75%" :
+             "100%" }}
         ></div>
       </div>
       <div className="form-container">
@@ -52,7 +58,7 @@ function Form() {
             חזור
           </button>
             
-          <a href={whatsAppBtnFlag} target="_blank"> 
+          <a href={whatsAppBtnFlag} rel="noreferrer" target="_blank"> 
           <button  style={{ backgroundColor: "green" }}>send whatsapp</button>
           </a>
 
@@ -62,25 +68,27 @@ function Form() {
                 alert('Dear customer, your message is ready to be sent, Hit Send Whatsapp to send the message and we will contact you Soon!')
                 setWhatsAppBtnFlag(
                   "https://wa.me/972523431188?text=" + 
-                  `hey Gefen!
-                  my name is -"${formData.fullName}-"
-                  my email is -"${formData.email}-"
-                  my number is -"${formData.cellNumber}-"
-                  i would like you to help me with: "${formData.problemKind}-"
-                  my AnyDesk number is: -"${formData.anyDeskNumber}-"
-                  my TeamViewer number is: -"${formData.teamViewer}-"
-                  `
+                  `hey Gefen!%0A`+
+                  `my name is: ${formData.fullName}%0A`+
+                  `my email is: ${formData.email}%0A`+
+                  `my number is ${formData.cellNumber}%0A`+
+                  `i would like you to help me with: ${formData.problemKind}%0A`+
+                  `my AnyDesk number is: ${formData.anyDeskNumber}%0A`+
+                  `my TeamViewer number is: ${formData.teamViewer}%0A`
+                  
                 );
                 console.log(formData);
               } else {
                 setPage((currPage) => currPage + 1);
               }
             }}
-          >
-            {page === FormTitles.length - 1 ? "שלח" : "המשך"}
+          >next
+            {/* {page === FormTitles.length - 1 ? "שלח" : "המשך"} */}
           </button>
         </div>
+        <h4>{page}</h4>
       </div>
+      <h4>Made by Gefen</h4>
     </div>
   );
 }
