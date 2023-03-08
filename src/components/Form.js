@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import SignUpInfo from "./SignUpInfo";
 import PersonalInfo from "./PersonalInfo";
-import OtherInfo from "./OtherInfo";
+import LastStage from "./LastStage";
+import RemoteControl from "./RemoteControl";
 
 function Form() {
   const [page, setPage] = useState(0);
@@ -18,7 +19,7 @@ function Form() {
     other: "",
   });
 
-  const FormTitles = ["פרטים אישיים", "תיאור הבעיה", "הפרטים", "ff"];
+  const FormTitles = ["פרטים אישיים", "תיאור הבעיה", "השתלטות מרחוק", "סיכום"];
 
   const PageDisplay = () => {
     if (page === 0) {
@@ -26,9 +27,9 @@ function Form() {
     } else if (page === 1) {
       return <PersonalInfo formData={formData} setFormData={setFormData} />;
     } else if (page === 2) {
-      return <PersonalInfo formData={formData} setFormData={setFormData} />;
+      return <RemoteControl formData={formData} setFormData={setFormData} />;
     } else {
-      return <OtherInfo formData={formData} setFormData={setFormData} />;
+      return <LastStage whatsAppBtnFlag={whatsAppBtnFlag} />;
     }
   };
 
@@ -36,11 +37,16 @@ function Form() {
     <div className="form">
       <div className="progressbar">
         <div
-          style={{ width: 
-            page === 0 ? "25%" :
-            page === 1 ? "50%" :
-            page === 2 ? "75%" :
-             "100%" }}
+          style={{
+            width:
+              page === 0
+                ? "25%"
+                : page === 1
+                ? "50%"
+                : page === 2
+                ? "75%"
+                : "100%",
+          }}
         ></div>
       </div>
       <div className="form-container">
@@ -57,33 +63,32 @@ function Form() {
           >
             חזור
           </button>
-            
-          <a href={whatsAppBtnFlag} rel="noreferrer" target="_blank"> 
-          <button  style={{ backgroundColor: "green" }}>send whatsapp</button>
-          </a>
+
 
           <button
+            disabled={page === 3}
             onClick={() => {
-              if (page === FormTitles.length - 1) {
-                alert('Dear customer, your message is ready to be sent, Hit Send Whatsapp to send the message and we will contact you Soon!')
+              // before the last page
+              if (page === FormTitles.length - 2) {
+                // set the whatsapp message content
                 setWhatsAppBtnFlag(
-                  "https://wa.me/972523431188?text=" + 
-                  `hey Gefen!%0A`+
-                  `my name is: ${formData.fullName}%0A`+
-                  `my email is: ${formData.email}%0A`+
-                  `my number is ${formData.cellNumber}%0A`+
-                  `i would like you to help me with: ${formData.problemKind}%0A`+
-                  `my AnyDesk number is: ${formData.anyDeskNumber}%0A`+
-                  `my TeamViewer number is: ${formData.teamViewer}%0A`
-                  
+                  "https://wa.me/972523431188?text=" +
+                    `hey Gefen!%0A` +
+                    `my name is: ${formData.fullName}%0A` +
+                    `my email is: ${formData.email}%0A` +
+                    `my number is ${formData.cellNumber}%0A` +
+                    `i would like you to help me with: ${formData.problemKind}%0A` +
+                    `my AnyDesk number is: ${formData.anyDeskNumber}%0A` +
+                    `my TeamViewer number is: ${formData.teamViewer}%0A`
                 );
-                console.log(formData);
+                console.log("set whatsapp message");
+                setPage((currPage) => currPage + 1);
               } else {
                 setPage((currPage) => currPage + 1);
               }
             }}
-          >next
-            {/* {page === FormTitles.length - 1 ? "שלח" : "המשך"} */}
+          >
+            {page === FormTitles.length - 1 ? "שלח" : "המשך"}
           </button>
         </div>
         <h4>{page}</h4>

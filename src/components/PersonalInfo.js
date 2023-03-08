@@ -1,32 +1,46 @@
 import React from "react";
 
 function PersonalInfo({ formData, setFormData }) {
+
+  const onOptionChange = e => {
+    setFormData({ ...formData, problemKind: e.target.value });
+  }
+
+
   return (
     <div className="personal-info-container">
+
       <input
-        type="text"
-        placeholder="problemKind"
-        value={formData.firstName}
-        onChange={(e) => {
-          setFormData({ ...formData, problemKind: e.target.value });
-        }}
+        type="radio"
+        name="topping"
+        value="CardBlocked"
+        id="blocked"
+        checked={formData.problemKind === "CardBlocked"}
+        onChange={onOptionChange}
       />
+      <label htmlFor="blocked">כרטיס חכם נעול</label>
+
       <input
-        type="text"
-        placeholder="teamViewer"
-        value={formData.lastName}
-        onChange={(e) => {
-          setFormData({ ...formData, teamViewer: e.target.value });
-        }}
+        type="radio"
+        name="topping"
+        value="CardUnrecognized"
+        id="unrecog"
+        checked={formData.problemKind === "CardUnrecognized"}
+        onChange={onOptionChange}
       />
+      <label htmlFor="unrecog">כרטיס חכם לא מזוהה</label>
+      
       <input
-        type="text"
-        placeholder="anyDeskNumber"
-        value={formData.username}
-        onChange={(e) => {
-          setFormData({ ...formData, anyDeskNumber: e.target.value });
-        }}
+        type="radio"
+        name="topping"
+        value="GovSite"
+        id="regular"
+        checked={formData.problemKind === "GovSite"}
+        onChange={onOptionChange}
       />
+      <label htmlFor="regular">כניסה לאתר ממשלתי</label>
+
+      <h3>problemKind: {formData.problemKind}</h3>
     </div>
   );
 }
