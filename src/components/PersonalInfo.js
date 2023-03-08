@@ -23,9 +23,9 @@ function PersonalInfo({ formData, setFormData }) {
       <input
         type="radio"
         name="topping"
-        value="CardUnrecognized"
+        value="CardUnRecognized"
         id="unrecog"
-        checked={formData.problemKind === "CardUnrecognized"}
+        checked={formData.problemKind === "CardUnRecognized"}
         onChange={onOptionChange}
       />
       <label htmlFor="unrecog">כרטיס חכם לא מזוהה</label>
@@ -40,7 +40,7 @@ function PersonalInfo({ formData, setFormData }) {
       />
       <label htmlFor="regular">כניסה לאתר ממשלתי</label>
 
-      <h3>problemKind: {formData.problemKind}</h3>
+      {/* <h3>problemKind: {formData.problemKind}</h3> */}
     </div>
   );
 }
